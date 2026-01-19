@@ -1,0 +1,25 @@
+# Real-Time Add-On Requirements
+# Additional dependencies for real-time train tracking features
+
+# WebSocket support for real-time communication
+websockets>=11.0.0
+
+# Firebase integration (optional)
+firebase-admin>=6.0.0
+
+# AWS integration (optional)
+boto3>=1.28.0
+
+# Azure IoT integration (optional)
+azure-iot-hub>=2.6.0
+
+# Enhanced async support
+asyncio-mqtt>=0.11.0
+
+# Additional utilities
+schedule>=1.2.0
+pytz>=2023.3
+
+# Note: These are optional dependencies that enable cloud integration.
+# The core real-time features work without them, with graceful degradation.</content>
+<parameter name="filePath">e:\Indian Train\realtime_requirements.txt

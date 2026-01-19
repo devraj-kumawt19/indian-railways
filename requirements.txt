@@ -1,0 +1,11 @@
+opencv-python
+ultralytics
+streamlit
+numpy
+pandas
+pillow
+python-dotenv
+requests
+torch
+urllib3
+certifi

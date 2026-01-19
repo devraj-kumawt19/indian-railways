@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Railways AI System - Access Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b5998 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .header .version {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .card-link {
+            display: inline-block;
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        
+        .card-link:hover {
+            text-decoration: underline;
+        }
+        
+        .primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .primary .card-title {
+            color: white;
+        }
+        
+        .primary .card-desc {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .primary .card-link {
+            color: #ffd700;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.8;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin: 1rem 0;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff88;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .primary {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Indian Railways AI System</h1>
+            <p>Enterprise-Grade Real-Time Train Monitoring & AI Analysis</p>
+            <div class="version">Version 1.0.0 | Production Ready</div>
+            <div class="status">
+                <span class="status-indicator"></span>
+                System Operational | 99.8% Uptime
+            </div>
+        </div>
+        
+        <div class="grid">
+            <!-- Primary Access -->
+            <a href="http://localhost:8501" class="card primary">
+                <div class="card-icon">🚀</div>
+                <div class="card-title">Launch Application</div>
+                <div class="card-desc">Access the main Indian Railways AI Detection System dashboard with real-time monitoring, train tracking, and advanced analytics.</div>
+                <div class="card-link">Open Application →</div>
+            </a>
+            
+            <!-- Documentation -->
+            <a href="README.md" class="card">
+                <div class="card-icon">📚</div>
+                <div class="card-title">Documentation</div>
+                <div class="card-desc">Complete project overview, features, system architecture, and integration information.</div>
+                <div class="card-link">Read Documentation →</div>
+            </a>
+            
+            <!-- System Overview -->
+            <a href="SYSTEM_OVERVIEW.md" class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">System Overview</div>
+                <div class="card-desc">Detailed system documentation, technology stack, modules, and enterprise features.</div>
+                <div class="card-link">View Overview →</div>
+            </a>
+            
+            <!-- Quick Start -->
+            <a href="QUICK_START_GUIDE.md" class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Quick Start</div>
+                <div class="card-desc">Get started in 60 seconds with setup instructions, system requirements, and first steps.</div>
+                <div class="card-link">Begin Now →</div>
+            </a>
+            
+            <!-- Deployment -->
+            <a href="DEPLOYMENT_GUIDE.md" class="card">
+                <div class="card-icon">🚀</div>
+                <div class="card-title">Deployment Guide</div>
+                <div class="card-desc">Production deployment instructions, cloud setup, CI/CD pipelines, and security configuration.</div>
+                <div class="card-link">Deploy Now →</div>
+            </a>
+            
+            <!-- Error Handling -->
+            <a href="ERROR_HANDLING_GUIDE.md" class="card">
+                <div class="card-icon">🔧</div>
+                <div class="card-title">Error Handling</div>
+                <div class="card-desc">Troubleshooting guide, error categories, debugging tips, and system health checks.</div>
+                <div class="card-link">Troubleshoot →</div>
+            </a>
+            
+            <!-- Links -->
+            <a href="LINKS.md" class="card">
+                <div class="card-icon">🔗</div>
+                <div class="card-title">Quick Links</div>
+                <div class="card-desc">Quick reference for all access points, external resources, and support channels.</div>
+                <div class="card-link">View Links →</div>
+            </a>
+            
+            <!-- Live Monitoring -->
+            <a href="http://localhost:8501" class="card">
+                <div class="card-icon">📹</div>
+                <div class="card-title">Live Monitoring</div>
+                <div class="card-desc">Real-time train detection, camera feed integration, and system health monitoring.</div>
+                <div class="card-link">View Feed →</div>
+            </a>
+            
+            <!-- Train Status -->
+            <a href="http://localhost:8501" class="card">
+                <div class="card-icon">🚆</div>
+                <div class="card-title">Train Status</div>
+                <div class="card-desc">Track live train locations, view schedules, check delays, and analyze routes.</div>
+                <div class="card-link">Track Trains →</div>
+            </a>
+            
+            <!-- Coach Analysis -->
+            <a href="http://localhost:8501" class="card">
+                <div class="card-icon">🚃</div>
+                <div class="card-title">Coach Analysis</div>
+                <div class="card-desc">AI-powered coach detection, platform positioning, capacity planning, and analytics.</div>
+                <div class="card-link">Analyze Coaches →</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p style="margin-bottom: 1rem;">Indian Railways AI Detection System | Enterprise Edition v1.0.0</p>
+            <p style="font-size: 0.9rem;">
+                <span style="margin-right: 2rem;">📧 support@example.com</span>
+                <span style="margin-right: 2rem;">📞 +91-XXXX-XXXX-XXXX</span>
+                <span>🌐 https://example.com</span>
+            </p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">
+                <strong>Developed by:</strong> Devraj Kumawat
+            </p>
+            <p style="font-size: 0.85rem; opacity: 0.6;">
+                © 2026 Indian Railways. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

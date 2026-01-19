@@ -1,0 +1,32 @@
+train_no,train_name,from_station,to_station,from_code,to_code,departure_time,arrival_time,duration_hrs,distance_km,coach_count,sl_coaches,ac2_coaches,ac3_coaches,fc_coaches,pantry,platform_from,platform_to,frequency,zone
+12301,Rajdhani Express,New Delhi,Mumbai Central,NDLS,BCT,16:00,08:30,16.5,1447,18,0,9,0,2,Yes,1,1,Daily,NR
+12002,Shatabdi Express,New Delhi,Jaipur,NDLS,JP,06:00,10:00,4,262,11,0,8,0,1,Yes,2,1,Daily,NR
+12003,Shatabdi Express,New Delhi,Agra,NDLS,AGC,06:15,08:15,2,206,10,0,7,0,1,Yes,3,1,Daily,NR
+12051,Rajdhani Express,New Delhi,Kolkata,NDLS,KOAA,17:00,09:55,16.55,1465,18,0,9,0,2,Yes,4,1,Daily,NR
+12401,Magadh Express,New Delhi,Patna,NDLS,PNBE,19:00,13:30,18.5,1052,18,8,4,6,0,Yes,5,2,Daily,NR
+12213,Garib Rath Express,New Delhi,Kanpur,NDLS,CNB,17:15,06:15,13,437,18,8,0,10,0,Yes,6,2,Daily,NR
+12304,Garib Rath Express,New Delhi,Lucknow,NDLS,LKO,19:30,08:00,12.5,500,18,8,0,10,0,Yes,7,3,Daily,NR
+12956,Rajdhani Express,New Delhi,Hyderabad,NDLS,HYB,17:30,10:30,17,1645,18,0,9,0,2,Yes,8,1,Daily,NR
+12623,Tamil Nadu Express,New Delhi,Chennai Central,NDLS,MAS,14:00,10:00,20,2189,21,10,6,5,0,Yes,9,1,Daily,NR
+12343,Darjeeling Mail,New Delhi,Kolkata,NDLS,KOAA,19:05,15:30,20.25,1465,20,10,4,6,0,Yes,10,2,Daily,NR
+12951,Rajdhani Express,Mumbai Central,Bangalore,BCT,SBC,19:00,12:00,17,1280,18,0,9,0,2,Yes,2,1,Daily,CR
+12124,Flying Ranee,Mumbai Central,Pune,BCT,PUNE,08:00,11:30,3.5,192,10,0,7,0,1,Yes,3,2,Daily,CR
+12053,Rajdhani Express,Kolkata,New Delhi,KOAA,NDLS,18:10,10:40,15.5,1465,18,0,9,0,2,Yes,5,2,Daily,ER
+12520,Bijnor Express,Kolkata,Jaipur,KOAA,JP,21:00,14:00,17,1366,18,8,4,6,0,Yes,6,3,Daily,ER
+12301,Rajdhani Express,Chennai Central,New Delhi,MAS,NDLS,20:45,11:40,14.55,2189,18,0,9,0,2,Yes,8,1,Daily,SR
+12623,Tamil Nadu Express,Chennai Central,New Delhi,MAS,NDLS,17:00,13:00,20,2189,21,10,6,5,0,Yes,9,2,Daily,SR
+12654,Karnataka Express,Bangalore,New Delhi,SBC,NDLS,20:00,13:05,17.05,2145,19,8,5,6,0,Yes,4,3,Daily,SWR
+12295,Sanghamitra Express,Bangalore,Secunderabad,SBC,SC,22:30,08:00,9.5,565,16,6,4,6,0,Yes,5,2,Daily,SWR
+12963,Rajdhani Express,Hyderabad,New Delhi,HYB,NDLS,17:40,11:00,17.2,1645,18,0,9,0,2,Yes,7,1,Daily,SCR
+12785,Telangana Express,Hyderabad,New Delhi,HYB,NDLS,14:30,08:15,17.45,1645,20,8,6,6,0,Yes,8,2,Daily,SCR
+12417,Prayagraj Express,Allahabad,Jaipur,ALD,JP,21:30,08:00,10.5,718,16,6,4,6,0,Yes,3,2,Daily,NCR
+12309,Howrah Rajdhani,Kolkata,Bangalore,KOAA,SBC,17:00,11:30,18.5,2270,18,0,9,0,2,Yes,4,1,Daily,ER
+12366,Mumbai Rajdhani,Mumbai Central,Gwalior,BCT,GWL,22:00,11:00,13,794,18,0,9,0,2,Yes,5,3,Daily,CR
+12424,Intercity Express,Jaipur,Kota Junction,JP,KJ,08:00,12:30,4.5,240,12,6,2,4,0,Yes,2,2,Daily,NWR
+12503,Kota Express,Kota Junction,Lucknow,KJ,LKO,19:00,09:30,14.5,900,18,8,4,6,0,Yes,3,2,Daily,NWR
+12642,Varanasi Express,Varanasi,Guwahati,BSB,GUHX,20:00,12:00,16,1144,18,8,4,6,0,Yes,4,1,Daily,ECR
+12806,Purushottam Express,Puri,New Delhi,PURI,NDLS,18:55,10:15,15.2,1944,21,10,6,5,0,Yes,2,4,Daily,ECR
+12393,Sampark Kranti,Muzaffarpur,Mumbai Central,MFP,BCT,17:00,12:00,19,1635,18,8,4,6,0,Yes,3,2,Daily,ECR
+12365,Guwahati Mail,Kolkata,Guwahati,KOAA,GUHX,21:00,15:00,18,1464,20,10,4,6,0,Yes,6,1,Daily,ER
+12229,Nagpur Express,Nagpur,New Delhi,NGP,NDLS,20:00,12:00,16,1275,18,8,4,6,0,Yes,5,2,Daily,SCR
+12555,Jodhpur Express,Jodhpur,Chandigarh,JU,CDG,21:00,11:30,14.5,827,16,8,3,5,0,Yes,2,1,Daily,NWR

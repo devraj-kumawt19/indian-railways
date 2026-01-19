@@ -1,0 +1,59 @@
+station_code,station_name,station_type,state,platform_count,zone
+NDLS,New Delhi,Major Junction,Delhi,16,NR
+BCT,Mumbai Central,Major Junction,Maharashtra,18,CR
+MAS,Chennai Central,Major Junction,Tamil Nadu,17,SR
+KOAA,Kolkata,Major Junction,West Bengal,14,ER
+HYB,Hyderabad,Major Junction,Telangana,13,SCR
+SBC,Bangalore,Major Junction,Karnataka,12,SWR
+BPL,Bhopal,Major Junction,Madhya Pradesh,11,WCR
+JP,Jaipur,Major Junction,Rajasthan,10,NWR
+ASR,Amritsar,Major Junction,Punjab,12,NR
+CNB,Kanpur,Major Junction,Uttar Pradesh,9,NCR
+LKO,Lucknow,Major Junction,Uttar Pradesh,11,NER
+ALD,Allahabad,Major Junction,Uttar Pradesh,10,NCR
+BSB,Varanasi,Major Junction,Uttar Pradesh,9,ECR
+PNBE,Patna,Major Junction,Bihar,9,ECR
+NGP,Nagpur,Major Junction,Maharashtra,14,SCR
+GWL,Gwalior,Major Junction,Madhya Pradesh,8,WCR
+AII,Ajmer,Major Junction,Rajasthan,7,NWR
+JBP,Jabalpur,Major Junction,Madhya Pradesh,10,WCR
+UDZ,Udaipur,Major Station,Rajasthan,6,NWR
+ST,Surat,Major Station,Gujarat,8,WR
+BRC,Vadodara,Major Station,Gujarat,7,WR
+ADI,Ahmedabad,Major Station,Gujarat,10,WR
+ERS,Kochi,Major Station,Kerala,6,SR
+TVC,Trivandrum,Major Station,Kerala,6,SR
+CBE,Coimbatore,Major Station,Tamil Nadu,8,SR
+PUNE,Pune,Major Station,Maharashtra,9,CR
+INDB,Indore,Major Station,Madhya Pradesh,6,WCR
+KJ,Kota Junction,Major Junction,Rajasthan,8,NWR
+SATN,Satna,Major Station,Madhya Pradesh,5,WCR
+JU,Jodhpur,Major Junction,Rajasthan,8,NWR
+BKN,Bikaner,Major Junction,Rajasthan,8,NWR
+GKP,Gorakhpur,Major Junction,Uttar Pradesh,8,NER
+ALD,Prayagraj,Major Junction,Uttar Pradesh,10,NCR
+GAYA,Gaya,Major Station,Bihar,7,ECR
+DBG,Darbhanga,Major Station,Bihar,6,ECR
+MFP,Muzaffarpur,Major Station,Bihar,6,ECR
+CDG,Chandigarh,Major Station,Punjab,6,NR
+UMB,Ambala,Major Station,Haryana,8,NR
+BTI,Bathinda,Major Station,Punjab,6,NR
+LDH,Ludhiana,Major Station,Punjab,6,NR
+JUC,Jalandhar,Major Station,Punjab,6,NR
+PTA,Patiala,Major Station,Punjab,5,NR
+BH,Bhavnagar,Major Station,Gujarat,6,WR
+RJT,Rajkot,Major Station,Gujarat,5,WR
+POR,Porbandar,Major Station,Gujarat,4,WR
+JNG,Junagadh,Major Station,Gujarat,5,WR
+MDU,Madurai,Major Station,Tamil Nadu,6,SR
+TPJ,Trichy,Major Station,Tamil Nadu,7,SR
+SA,Salem,Major Station,Tamil Nadu,5,SR
+CLT,Calicut,Major Station,Kerala,5,SR
+BZA,Vijayawada,Major Station,Andhra Pradesh,8,SCR
+VSKP,Visakhapatnam,Major Station,Andhra Pradesh,8,SCR
+RJY,Rajahmundry,Major Station,Andhra Pradesh,5,SCR
+TIPT,Tirupati,Major Station,Andhra Pradesh,6,SCR
+MTJ,Mathura,Major Station,Uttar Pradesh,8,NR
+AGC,Agra,Major Station,Uttar Pradesh,8,CR
+SC,Secunderabad,Major Junction,Telangana,13,SCR
+MAJN,Mangalore,Major Station,Karnataka,6,SWR

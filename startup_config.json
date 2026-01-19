@@ -1,0 +1,107 @@
+{
+    "application": {
+        "name": "Indian Railways AI Detection System",
+        "version": "1.0.0",
+        "type": "Enterprise",
+        "status": "Production",
+        "description": "Real-time train detection and monitoring system with AI-powered coaching analysis"
+    },
+    "launch": {
+        "default": {
+            "method": "streamlit",
+            "command": "streamlit run src/ui/app.py",
+            "port": 8501,
+            "host": "0.0.0.0",
+            "environment": "production"
+        },
+        "alternative": {
+            "method": "python",
+            "command": "python -m streamlit run src/ui/app.py --server.headless true"
+        }
+    },
+    "access": {
+        "local": "http://localhost:8501",
+        "network": "http://192.168.1.1:8501",
+        "dashboard": "http://localhost:8501",
+        "documentation": "./index.html"
+    },
+    "requirements": {
+        "python_version": "3.8+",
+        "virtual_environment": true,
+        "venv_path": ".venv",
+        "dependencies_file": "requirements.txt",
+        "optional_gpu": false
+    },
+    "deployment": {
+        "methods": [
+            "docker",
+            "aws_elasticbeanstalk",
+            "azure_app_service",
+            "gcp_cloud_run",
+            "local_server",
+            "kubernetes"
+        ],
+        "default_method": "docker",
+        "https_required": false
+    },
+    "features": {
+        "live_monitoring": {
+            "enabled": true,
+            "camera_integration": true,
+            "fps": 30,
+            "resolution": "1280x720"
+        },
+        "train_tracking": {
+            "enabled": true,
+            "api_integration": "NTES",
+            "refresh_interval": 30,
+            "cache_ttl": 300
+        },
+        "coach_detection": {
+            "enabled": true,
+            "model": "YOLO v8",
+            "confidence_threshold": 0.7,
+            "batch_processing": true
+        },
+        "platform_management": {
+            "enabled": true,
+            "max_platforms": 8,
+            "coach_capacity_tracking": true
+        },
+        "advanced_search": {
+            "enabled": true,
+            "filters": [
+                "date_range",
+                "train_type",
+                "route",
+                "status"
+            ]
+        }
+    },
+    "monitoring": {
+        "health_check_interval": 60,
+        "error_logging": true,
+        "performance_metrics": true,
+        "uptime_target": 99.8
+    },
+    "security": {
+        "ssl_enabled": false,
+        "authentication_required": false,
+        "api_keys_required": false,
+        "cors_enabled": true
+    },
+    "documentation": {
+        "main": "README.md",
+        "system": "SYSTEM_OVERVIEW.md",
+        "quick_start": "QUICK_START_GUIDE.md",
+        "deployment": "DEPLOYMENT_GUIDE.md",
+        "errors": "ERROR_HANDLING_GUIDE.md",
+        "links": "LINKS.md"
+    },
+    "support": {
+        "email": "support@example.com",
+        "phone": "+91-XXXX-XXXX-XXXX",
+        "website": "https://example.com",
+        "github": "https://github.com/example/indian-railways-ai"
+    }
+}
