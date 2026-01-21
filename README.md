@@ -252,3 +252,21 @@ The system includes sample data for major Indian trains:
 **Version:** 1.0.0  
 **Status:** ✅ Production Ready  
 **© 2026 Indian Railways**
+
+---
+
+## Import Train Details CSV
+
+You can import the attached `Train_details_22122017.csv` (or any other train details CSV) into the project `data/` folder and optionally merge it with the existing `data/train_schedule.csv`.
+
+Run:
+
+```bash
+python src/utils/import_train_details.py "C:\path\to\Train_details_22122017.csv"
+# Example with merge
+python src/utils/import_train_details.py "C:\path\to\Train_details_22122017.csv" --out data/Train_details_22122017.csv --merge-with data/train_schedule.csv --combined-out data/train_details_combined.csv
+```
+
+Notes:
+- The script requires `pandas` (install with `pip install pandas`).
+- The script saves a copy into `data/` and writes a combined CSV if `--merge-with` exists.
