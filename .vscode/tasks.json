@@ -12,6 +12,42 @@
 				"run",
 				"src/ui/app.py"
 			]
+		},
+		{
+			"label": "Run Professional App",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"streamlit",
+				"run",
+				"src/ui/app_professional.py"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Run Professional App",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"streamlit",
+				"run",
+				"src/ui/app_professional.py"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Run Professional App v2",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"streamlit",
+				"run",
+				"src/ui/app_new.py"
+			],
+			"isBackground": true
 		}
 	]
 }

@@ -2,14 +2,17 @@ import pandas as pd
 import os
 from typing import List, Dict, Optional
 from pathlib import Path
+from src.scheduling.indian_railways_api import IndianRailwaysAPI
 
 class TrainRepository:
-    """Repository for managing train and station data from CSV files."""
+    """Repository for managing train and station data from CSV files + Live API."""
     
     def __init__(self):
         self.data_path = Path(__file__).parent.parent.parent / "data"
         self.stations_df = None
         self.trains_df = None
+        self.schedule_df = None
+        self.api = IndianRailwaysAPI()  # Initialize live API
         self._load_data()
     
     def _load_data(self):
@@ -17,17 +20,26 @@ class TrainRepository:
         try:
             stations_file = self.data_path / "indian_stations.csv"
             trains_file = self.data_path / "trains_with_coaches.csv"
+            schedule_file = self.data_path / "Train_details_22122017.csv"
             
             if stations_file.exists():
                 self.stations_df = pd.read_csv(stations_file)
             
             if trains_file.exists():
                 self.trains_df = pd.read_csv(trains_file)
+            
+            # Load detailed schedule data
+            if schedule_file.exists():
+                self.schedule_df = pd.read_csv(schedule_file)
+                print(f"✓ Loaded {len(self.schedule_df)} schedule entries from Train_details_22122017.csv")
+            else:
+                self.schedule_df = pd.DataFrame()
                 
         except Exception as e:
             print(f"Error loading data: {e}")
             self.stations_df = pd.DataFrame()
             self.trains_df = pd.DataFrame()
+            self.schedule_df = pd.DataFrame()
     
     def get_all_stations(self) -> List[Dict]:
         """Get all stations."""
@@ -150,4 +162,94 @@ class TrainRepository:
             'from_station': train['from_station'],
             'to_station': train['to_station'],
             'distance_km': train['distance_km']
-        }
+        }    
+    def get_train_schedule(self, train_no: int) -> List[Dict]:
+        """Get complete schedule for a train with all stops."""
+        if self.schedule_df is None or self.schedule_df.empty:
+            return []
+        
+        schedule = self.schedule_df[self.schedule_df['Train No'] == train_no]
+        if schedule.empty:
+            return []
+        
+        return schedule.to_dict('records')
+    
+    def get_train_route_stops(self, train_no: int) -> List[str]:
+        """Get all stops for a train in order."""
+        schedule = self.get_train_schedule(train_no)
+        if not schedule:
+            return []
+        
+        stops = []
+        for stop in schedule:
+            code = stop['Station Code']
+            name = stop['Station Name']
+            if code not in [s.split('(')[1].strip(')') if '(' in s else s for s in stops]:
+                stops.append(f"{name} ({code})")
+        
+        return stops
+    
+    def search_trains_by_name(self, train_name: str) -> List[Dict]:
+        """Search trains by name pattern."""
+        if self.trains_df is None or self.trains_df.empty:
+            return []
+        
+        query_lower = train_name.lower()
+        results = self.trains_df[
+            self.trains_df['train_name'].str.lower().str.contains(query_lower, na=False)
+        ]
+        return results.to_dict('records')
+    
+    # ========== LIVE API METHODS ==========
+    
+    def get_live_train_status(self, train_no: str) -> Optional[Dict]:
+        """Get real-time train status from live API."""
+        try:
+            return self.api.get_live_train_status(str(train_no))
+        except Exception as e:
+            print(f"Error fetching live status: {e}")
+            return None
+    
+    def search_trains_api(self, from_station: str, to_station: str, date: str = None) -> List[Dict]:
+        """Search trains between two stations using live API."""
+        try:
+            return self.api.get_all_trains_between_stations(from_station, to_station, date)
+        except Exception as e:
+            print(f"Error searching trains: {e}")
+            return []
+    
+    def get_pnr_status(self, pnr_number: str) -> Optional[Dict]:
+        """Get PNR status from live API."""
+        try:
+            return self.api.get_pnr_status(pnr_number)
+        except Exception as e:
+            print(f"Error fetching PNR status: {e}")
+            return None
+    
+    def get_train_fare(self, train_no: str, from_station: str, to_station: str, train_class: str = "SL") -> Optional[Dict]:
+        """Get train fare information from live API."""
+        try:
+            return self.api.get_train_fare(train_no, from_station, to_station, train_class)
+        except Exception as e:
+            print(f"Error fetching fare: {e}")
+            return None
+    
+    def get_station_code(self, station_name: str) -> Optional[str]:
+        """Get station code from station name using live API."""
+        local_result = self.search_stations(station_name)
+        if local_result:
+            return local_result[0].get('station_code')
+        
+        try:
+            return self.api.get_station_code(station_name)
+        except Exception as e:
+            print(f"Error getting station code: {e}")
+            return None
+    
+    def get_train_journey_schedule(self, train_no: str, journey_date: str = None) -> Optional[Dict]:
+        """Get detailed train journey schedule with station-by-station live tracking."""
+        try:
+            return self.api.get_train_journey_schedule(str(train_no), journey_date)
+        except Exception as e:
+            print(f"Error fetching journey schedule: {e}")
+            return None
