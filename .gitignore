@@ -1,0 +1,133 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+env/
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Streamlit
+.streamlit/
+.streamlit/secrets.toml
+streamlit_cache/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+secrets.toml
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*~
+~*
+#*#
+.#*
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.lnk
+.directory
+
+# Project specific
+_backup/
+temp*/
+.cache/
+*.cache
+cache/
+.streamlit/
+.notebooks/
+notebooks/.ipynb_checkpoints/
+
+# Data
+*.csv
+data/*.csv
+!data/template_*.csv
+
+# Models
+models/*.pth
+models/*.pkl
+models/*.h5
+models/*.onnx
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# API keys & secrets
+api_keys.json
+secrets.json
+*.key
+*.pem
+
+# Compiled
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution
+dist/
+build/
+*.egg-info
+
+# Documentation builds
+docs/_build/
+site/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Random files
+*.tmp
+*.bak
+.~*

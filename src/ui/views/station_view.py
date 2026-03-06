@@ -3,6 +3,7 @@ import streamlit as st
 from typing import List
 from src.models import Station
 from src.services import StationService
+from src.utils.suggestions import display_suggestions
 
 
 class StationView:
@@ -20,6 +21,10 @@ class StationView:
             placeholder="e.g., Delhi, NDLS",
             key="station_search"
         )
+        
+        # Display station suggestions
+        if search_query:
+            display_suggestions("station_search", "station", search_query)
         
         if search_query:
             results = self.service.search_stations(search_query)

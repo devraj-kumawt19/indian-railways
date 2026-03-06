@@ -5,18 +5,21 @@ Displays station-by-station train journey with live tracking data
 
 import streamlit as st
 import pandas as pd
+import textwrap
 from src.repositories.train_repository import TrainRepository
 from datetime import datetime
+from src.utils.suggestions import display_suggestions
 
 def display_journey_tracking():
     """Display live train journey tracking interface using RapidAPI."""
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 2rem; 
-                border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
-        <h2 style="margin: 0 0 0.5rem 0; font-size: 2rem;">🚂 Live Train Journey Tracking</h2>
-        <p style="margin: 0; opacity: 0.95; font-size: 1rem;">Real-time station-by-station monitoring with live delay tracking (Powered by RapidAPI)</p>
-    </div>
-    """, unsafe_allow_html=True)
+    header_html = """
+<div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 2rem; 
+            border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
+    <h2 style="margin: 0 0 0.5rem 0; font-size: 2rem;">🚂 Live Train Journey Tracking</h2>
+    <p style="margin: 0; opacity: 0.95; font-size: 1rem;">Real-time station-by-station monitoring with live delay tracking (Powered by RapidAPI)</p>
+</div>
+"""
+    st.markdown(textwrap.dedent(header_html), unsafe_allow_html=True)
     
     repo = TrainRepository()
     
@@ -30,6 +33,10 @@ def display_journey_tracking():
             key="journey_train_input",
             help="Enter train number to see live journey tracking"
         )
+
+        # Display train number suggestions
+        if train_no:
+            display_suggestions("journey_train_input", "train", train_no)
     
     with col2:
         journey_date = st.date_input(
@@ -56,7 +63,7 @@ def display_journey_details(repo, train_no: str, journey_date):
             st.success("✅ Data loaded fromLive Railway Service")
             
             # Header Section
-            st.markdown(f"""
+            st.markdown(textwrap.dedent(f"""
           <div style="display:flex; justify-content:center;">
                 <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; 
                         border: 2px solid #667eea; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);">
@@ -83,7 +90,7 @@ def display_journey_details(repo, train_no: str, journey_date):
                     </div>
                 </div>
             </div>
-            """, unsafe_allow_html=True)
+            """), unsafe_allow_html=True)
             
             # Summary Metrics
             col1, col2, col3, col4 = st.columns(4)
@@ -155,9 +162,9 @@ def display_journey_details(repo, train_no: str, journey_date):
                     f"</div>"
                     f"</div>"
                     f"</div>"
-                )
+                )   
                 
-                st.markdown(card_html, unsafe_allow_html=True)
+            st.markdown(card_html, unsafe_allow_html=True)
             
             # Journey Statistics
             st.markdown("### 📈 Journey Statistics")
@@ -210,13 +217,13 @@ def display_journey_details(repo, train_no: str, journey_date):
 
 def display_all_india_trains_and_stations():
     """Display all available trains and stations in India."""
-    st.markdown("""
+    st.markdown(textwrap.dedent("""
     <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 2rem; 
                 border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
         <h2 style="margin: 0 0 0.5rem 0; font-size: 2rem;">🚂 All India Railways Network</h2>
         <p style="margin: 0; opacity: 0.95; font-size: 1rem;">Complete directory of trains and stations across India</p>
     </div>
-    """, unsafe_allow_html=True)
+    """), unsafe_allow_html=True)
     
     repo = TrainRepository()
     
@@ -246,6 +253,10 @@ def display_all_trains(repo):
         
         with search_col:
             search_term = st.text_input("Search trains by name or number", key="train_search")
+
+            # Display train search suggestions
+            if search_term:
+                display_suggestions("train_search", "train", search_term)
         
         with filter_col:
             zone_filter = st.multiselect("Filter by Zone", 
@@ -266,7 +277,7 @@ def display_all_trains(repo):
             cols = st.columns(2)
             for idx, train in enumerate(filtered_trains):
                 with cols[idx % 2]:
-                    st.markdown(f"""
+                    train_card_html = f"""
                     <div style="background: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;
                                 border: 2px solid #e9ecef; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
@@ -282,7 +293,8 @@ def display_all_trains(repo):
                             <div>⏰ Duration: {train.get('duration_hrs', 'N/A')} hours</div>
                         </div>
                     </div>
-                    """, unsafe_allow_html=True)
+                    """
+                    st.markdown(train_card_html, unsafe_allow_html=True)
         else:
             st.warning("No trains found matching your search criteria.")
     else:
@@ -302,6 +314,10 @@ def display_all_stations(repo):
         
         with search_col:
             search_term = st.text_input("Search stations by name or code", key="station_search_all")
+
+            # Display station search suggestions
+            if search_term:
+                display_suggestions("station_search_all", "station", search_term)
         
         with filter_col:
             state_filter = st.multiselect("Filter by State",
@@ -342,7 +358,7 @@ def display_network_map(repo):
     all_trains = repo.get_all_trains()
     all_stations = repo.get_all_stations()
     
-    st.markdown(f"""
+    network_stats_html = f"""
     <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem;">
             <div style="text-align: center;">
@@ -363,7 +379,8 @@ def display_network_map(repo):
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """
+    st.markdown(network_stats_html, unsafe_allow_html=True)
     
     # Zone-wise distribution
     st.markdown("### Zone-wise Distribution")

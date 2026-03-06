@@ -48,6 +48,18 @@
 				"src/ui/app_new.py"
 			],
 			"isBackground": true
+		},
+		{
+			"label": "Run Train Detection App",
+			"type": "shell",
+			"command": "&",
+			"args": [
+				"E:\\Indian Train\\.venv\\Scripts\\python.exe",
+				"-m",
+				"streamlit",
+				"run",
+				"src/ui/app.py"
+			]
 		}
 	]
 }

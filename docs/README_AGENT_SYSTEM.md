@@ -19,13 +19,13 @@ Successfully implemented a complete agent-based architecture for the Indian Rail
 Indian Train/
 │
 ├─ src/agents/                          ← Agent System Core
-│  ├─ base_agent.py                     (100 lines) - Abstract base
-│  ├─ coach_position_agent.py           (280 lines) - ⭐ Main component
-│  ├─ coach_formation_agent.py          (180 lines) - Data loading
-│  ├─ train_info_agent.py               (60 lines) - Info retrieval
-│  ├─ status_agent.py                   (90 lines) - Aggregation
-│  ├─ coordinator_agent.py              (100 lines) - Orchestration
-│  └─ __init__.py                       (15 lines) - Exports
+│  ├─ base_agent.py                                Abstract base
+│  ├─ coach_position_agent.py                - ⭐ Main component
+│  ├─ coach_formation_agent.py               - Data loading
+│  ├─ train_info_agent.py                    - Info retrieval
+│  ├─ status_agent.py                        - Aggregation
+│  ├─ coordinator_agent.py                      Orchestration
+│  └─ __init__.py                            - Exports
 │
 ├─ src/ui/
 │  └─ agents_app.py                     ← Streamlit Interface
@@ -38,10 +38,10 @@ Indian Train/
 │  ├─ run_tests.py                      ← Test runner
 │
 └─ Documentation                        ← Complete docs
-   ├─ AGENT_ARCHITECTURE.md             (500+ lines) - Detailed design
-   ├─ AGENT_QUICK_START.md              (300+ lines) - Quick reference
-   ├─ AGENT_IMPLEMENTATION_COMPLETE.md  (500+ lines) - Step-by-step guide
-   └─ AGENT_SYSTEM_COMPLETE.md          (400+ lines) - This summary
+   ├─ AGENT_ARCHITECTURE.md              - Detailed design
+   ├─ AGENT_QUICK_START.md              - Quick reference
+   ├─ AGENT_IMPLEMENTATION_COMPLETE.md   - Step-by-step guide
+   └─ AGENT_SYSTEM_COMPLETE.md           - This summary
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -73,8 +73,7 @@ streamlit run src/ui/agents_app.py
 
 ═══════════════════════════════════════════════════════════════════════════════
 
-## 🏗️ AGENT ARCHITECTURE
-
+## 🏗️--
 ```
                     CoordinatorAgent
                     (Master Control)

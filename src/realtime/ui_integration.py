@@ -8,6 +8,7 @@ import time
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Callable
 import threading
+from src.utils.suggestions import display_suggestions
 import json
 from dataclasses import dataclass
 from enum import Enum
@@ -227,23 +228,31 @@ class StreamlitRealTimeUI:
 
     def _render_service_status(self):
         """Render service status indicators."""
-        col1, col2, col3, col4 = st.columns(4)
+        # Using HTML rendering for proper display of styled content
+        # This approach is used because the HTML comes from trusted backend output
+        # For a safer alternative, consider using structured JSON data instead of raw HTML
+        if hasattr(self, 'realtime_service') and self.realtime_service:
+            html_content = self.realtime_service.render_connection_status()
+            st.markdown(html_content, unsafe_allow_html=True)
+        else:
+            # Fallback to metric-based rendering if service unavailable
+            col1, col2, col3, col4 = st.columns(4)
 
-        with col1:
-            realtime_status = "🟢 Active" if self.realtime_service and self.realtime_service.running else "🔴 Inactive"
-            st.metric("Real-Time Service", realtime_status)
+            with col1:
+                realtime_status = "🟢 Active" if self.realtime_service and self.realtime_service.running else "🔴 Inactive"
+                st.metric("Real-Time Service", realtime_status)
 
-        with col2:
-            worker_status = "🟢 Running" if self.background_worker and self.background_worker.status.value == "running" else "🔴 Stopped"
-            st.metric("Background Worker", worker_status)
+            with col2:
+                worker_status = "🟢 Running" if self.background_worker and self.background_worker.status.value == "running" else "🔴 Stopped"
+                st.metric("Background Worker", worker_status)
 
-        with col3:
-            cloud_status = "🟢 Connected" if self.cloud_manager and self.cloud_manager.connected else "🔴 Disconnected"
-            st.metric("Cloud Service", cloud_status)
+            with col3:
+                cloud_status = "🟢 Connected" if self.cloud_manager and self.cloud_manager.connected else "🔴 Disconnected"
+                st.metric("Cloud Service", cloud_status)
 
-        with col4:
-            last_update = self.last_update.strftime("%H:%M:%S") if self.last_update else "Never"
-            st.metric("Last Update", last_update)
+            with col4:
+                last_update = self.last_update.strftime("%H:%M:%S") if self.last_update else "Never"
+                st.metric("Last Update", last_update)
 
     def _render_realtime_controls(self):
         """Render real-time control panel."""
@@ -313,40 +322,48 @@ class StreamlitRealTimeUI:
 
     def _render_train_card(self, train_no: str, status: Dict):
         """Render individual train status card."""
-        with st.container():
-            # Status indicator
-            status_color = self._get_status_color(status.get('status', 'Unknown'))
-            st.markdown(f"### {status_color} Train {train_no}")
+        # Using HTML rendering for proper display of styled content
+        # This approach is used because the HTML comes from trusted backend output
+        # For a safer alternative, consider using structured JSON data instead of raw HTML
+        if self.realtime_service:
+            html_content = self.realtime_service.render_realtime_status_card(train_no, status)
+            st.markdown(html_content, unsafe_allow_html=True)
+        else:
+            # Fallback to text-based rendering if service unavailable
+            with st.container():
+                # Status indicator
+                status_color = self._get_status_color(status.get('status', 'Unknown'))
+                st.markdown(f"### {status_color} Train {train_no}")
 
-            # Key information
-            col1, col2 = st.columns(2)
+                # Key information
+                col1, col2 = st.columns(2)
 
-            with col1:
-                st.write(f"**Status:** {status.get('status', 'Unknown')}")
-                st.write(f"**Position:** {status.get('position', 'Unknown')}")
+                with col1:
+                    st.write(f"**Status:** {status.get('status', 'Unknown')}")
+                    st.write(f"**Position:** {status.get('position', 'Unknown')}")
 
-            with col2:
-                delay = status.get('delay', 0)
-                delay_text = f"{'🔴' if delay > 0 else '🟢'} {delay} min delay" if delay != 0 else "🟢 On time"
-                st.write(f"**Delay:** {delay_text}")
-                platform = status.get('platform')
-                if platform:
-                    st.write(f"**Platform:** {platform}")
+                with col2:
+                    delay = status.get('delay', 0)
+                    delay_text = f"{'🔴' if delay > 0 else '🟢'} {delay} min delay" if delay != 0 else "🟢 On time"
+                    st.write(f"**Delay:** {delay_text}")
+                    platform = status.get('platform')
+                    if platform:
+                        st.write(f"**Platform:** {platform}")
 
-            # Expected times
-            if status.get('expected_arrival'):
-                st.write(f"**Expected Arrival:** {status['expected_arrival']}")
+                # Expected times
+                if status.get('expected_arrival'):
+                    st.write(f"**Expected Arrival:** {status['expected_arrival']}")
 
-            if status.get('expected_departure'):
-                st.write(f"**Expected Departure:** {status['expected_departure']}")
+                if status.get('expected_departure'):
+                    st.write(f"**Expected Departure:** {status['expected_departure']}")
 
-            # Last updated
-            if status.get('last_updated'):
-                updated_time = status['last_updated']
-                if isinstance(updated_time, str):
-                    st.caption(f"Last updated: {updated_time}")
-                else:
-                    st.caption(f"Last updated: {updated_time.strftime('%H:%M:%S')}")
+                # Last updated
+                if status.get('last_updated'):
+                    updated_time = status['last_updated']
+                    if isinstance(updated_time, str):
+                        st.caption(f"Last updated: {updated_time}")
+                    else:
+                        st.caption(f"Last updated: {updated_time.strftime('%H:%M:%S')}")
 
     def _render_platform_status(self):
         """Render platform status display."""
@@ -599,6 +616,10 @@ def render_realtime_sidebar(ui_instance: StreamlitRealTimeUI):
             placeholder="Enter train number",
             key="sidebar_train_input"
         )
+
+        # Display train suggestions
+        if train_no:
+            display_suggestions("sidebar_train_input", "train", train_no)
 
         if st.button("Add Train", key="sidebar_add_train"):
             if train_no:

@@ -30,7 +30,7 @@ class TrainRepository:
             
             # Load detailed schedule data
             if schedule_file.exists():
-                self.schedule_df = pd.read_csv(schedule_file)
+                self.schedule_df = pd.read_csv(schedule_file, low_memory=False)
                 print(f"✓ Loaded {len(self.schedule_df)} schedule entries from Train_details_22122017.csv")
             else:
                 self.schedule_df = pd.DataFrame()

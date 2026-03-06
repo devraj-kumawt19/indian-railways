@@ -42,6 +42,10 @@ class IndianRailwaysAPI:
             'ntes': {
                 'base_url': "https://enquiry.indianrail.gov.in/mntes",
                 'key': None  # NTES scraping doesn't need API key
+            },
+            'datagovin': {
+                'base_url': "https://api.data.gov.in/resource/13051d52-05c2-4130-9e7b-891bdde84076",
+                'key': os.getenv('DATAGOVIN_API_KEY', '579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b')
             }
         }
 
@@ -280,6 +284,43 @@ class IndianRailwaysAPI:
             return self._parse_train_fare(data)
 
         return self._get_mock_train_fare(train_no, from_station, to_station, train_class)
+
+    def get_timetable_from_datagovin(self, limit: int = 10, offset: int = 0) -> Optional[List[Dict]]:
+        """Get train timetable data from data.gov.in API."""
+        try:
+            import requests
+            import xml.etree.ElementTree as ET
+
+            api_config = self.apis['datagovin']
+            params = {
+                'api-key': api_config['key'],
+                'format': 'xml',
+                'limit': limit,
+                'offset': offset
+            }
+            headers = {'accept': 'application/xml'}
+
+            response = requests.get(api_config['base_url'], headers=headers, params=params, timeout=10)
+            response.raise_for_status()
+
+            # Parse XML
+            root = ET.fromstring(response.text)
+            records = []
+
+            for item in root.findall('.//records/item'):
+                record = {}
+                for child in item:
+                    tag = child.tag
+                    if tag == '_distance':
+                        tag = 'distance'
+                    record[tag] = child.text
+                records.append(record)
+
+            return records
+
+        except Exception as e:
+            print(f"Error fetching from data.gov.in: {e}")
+            return None
 
     def get_train_journey_schedule(self, train_no: str, journey_date: str = None) -> Optional[Dict]:
         """

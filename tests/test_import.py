@@ -3,12 +3,12 @@
 
 import sys
 import os
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 try:
-    from src.ui.app import TrainDetectionApp
+    from src.ui.app import main
     print("✅ Import successful!")
-    print(f"TrainDetectionApp class: {TrainDetectionApp}")
+    print(f"Main function: {main}")
 except ImportError as e:
     print(f"❌ Import failed: {e}")
 except Exception as e:
